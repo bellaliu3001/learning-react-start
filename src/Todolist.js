@@ -30,7 +30,9 @@ export default class Todolist extends Component {
     return (
       <Fragment>
         <div>
+          <label htmlFor="list-item">Add Item</label>
           <input 
+            id="list-item"
             className="input"
             type="text"
             name="task"
