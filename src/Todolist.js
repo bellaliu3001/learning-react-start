@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import './style.css';
 
+import TodolistItem from './TodolistItem';
 export default class Todolist extends Component {
   state = {
     task: "",
@@ -47,13 +48,7 @@ export default class Todolist extends Component {
           {
             this.state.list.map((item, i) => {
               return (
-                <li 
-                  key={i} 
-                  onClick={() => this.handleItemDelete(i)}
-                  dangerouslySetInnerHTML={{__html: item}}
-                >
-                  {/* {item} */}
-                </li>
+                <TodolistItem handleItemDelete={this.handleItemDelete} index={i} item={item} key={i}></TodolistItem>
               )
             })
           }
