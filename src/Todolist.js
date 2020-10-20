@@ -8,23 +8,30 @@ export default class Todolist extends Component {
     list: []
   }
   handleOnChange = (e) => {
-    this.setState({
+    const inputVal = {
       [e.target.name]: e.target.value
-    });
+    }
+    // setState can take a function
+    // NOTE: this function is async func
+    this.setState( () => (inputVal))
   }
   handleOnClick = (e) => {
     if(this.state.task){
-      this.setState({
-        list: [...this.state.list, this.state.task],
+      // the function in setState has a parameter called prevState
+      // it is storing previous state data
+      this.setState( (prevState) => ({
+        list: [...prevState.list, prevState.task],
         task: "",
-      })
+      }));
     }
   }
   handleItemDelete = (i) => {
-    const temp = [...this.state.list];
-    temp.splice(i, 1);
-    this.setState({
-      list: temp
+    this.setState((prevState) => {
+      const temp = [...prevState.list];
+      temp.splice(i, 1);
+      return {
+        list: temp
+      }
     })
   }
   render() {
