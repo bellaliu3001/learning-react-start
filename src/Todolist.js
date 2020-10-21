@@ -1,11 +1,25 @@
 import React, { Component, Fragment } from 'react';
 import './style.css';
+import axios from 'axios';
 
 import TodolistItem from './TodolistItem';
 export default class Todolist extends Component {
   state = {
     task: "",
     list: []
+  }
+  componentDidMount(){
+    axios.get('/api/todolist')
+    .then((res) => {
+      this.setState(() => ({
+        list: [...res.data]
+      }))
+      
+    })
+    .catch((err) => {
+      console.log(err);
+      
+    })
   }
   handleOnChange = (e) => {
     const inputVal = {
